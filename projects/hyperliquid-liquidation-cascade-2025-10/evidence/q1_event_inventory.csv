@@ -1,0 +1,7 @@
+metric,value
+adl_events_cleaned_rows,35022
+adl_fill_rows_from_fills,35022
+liquidated_dir_fill_rows,70004
+forced_liquidation_metadata_rows,571840
+ledger_liquidation_events,14521
+ledger_liquidation_users,12445

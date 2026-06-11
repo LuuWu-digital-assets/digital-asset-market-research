@@ -1,0 +1,121 @@
+dataset_id: hyperliquid_20251010_21
+project: hyperliquid
+description: Hyperliquid raw-data cleaning window for 2025-10-10 21:00-22:00 UTC.
+
+source_ids:
+  node_fills_by_block: hyperliquid_node_fills_s3_20251010_210000_utc_1h
+  misc_events_by_block: misc_events_by_block_20251010_21
+  l2_book: l2Book_20251010_21
+  asset_ctxs: asset_ctxs_20251010
+  explorer_blocks: explorer_blocks_20251010_21
+
+window:
+  utc_start: "2025-10-10 21:00:00+00:00"
+  utc_end: "2025-10-10 22:00:00+00:00"
+  bjt_start: "2025-10-11 05:00:00+08:00"
+  bjt_end: "2025-10-11 06:00:00+08:00"
+  start_ms: 1760130000000
+  end_ms: 1760133600000
+  start_block: 758789997
+  end_block: 758832889
+
+paths:
+  raw:
+    s3_download_dir: data/hyperliquid/s3_downloads/bjt_20251011_0500_0600
+    node_fills_by_block_lz4: data/hyperliquid/s3_downloads/bjt_20251011_0500_0600/hl-mainnet-node-data/node_fills_by_block/hourly/20251010/21.lz4
+    misc_events_by_block_lz4: data/hyperliquid/s3_downloads/bjt_20251011_0500_0600/hl-mainnet-node-data/misc_events_by_block/hourly/20251010/21.lz4
+    l2_book_dir: data/hyperliquid/s3_downloads/bjt_20251011_0500_0600/hyperliquid-archive/market_data/20251010/21/l2Book
+    asset_ctxs_lz4: data/hyperliquid/s3_downloads/bjt_20251011_0500_0600/hyperliquid-archive/asset_ctxs/20251010.csv.lz4
+    explorer_blocks_root: data/hyperliquid/s3_downloads/bjt_20251011_0500_0600/hl-mainnet-node-data/explorer_blocks
+
+  cleaned:
+    root: data/hyperliquid/cleaned/${dataset_id}
+    cleaning_manifest_json: data/hyperliquid/cleaned/${dataset_id}/cleaning_manifest.json
+
+    node_fills:
+      dir: data/hyperliquid/cleaned/${dataset_id}/node_fills_by_block
+      blocks_ndjson: data/hyperliquid/cleaned/${dataset_id}/node_fills_by_block/blocks.ndjson
+      fills_flat_ndjson: data/hyperliquid/cleaned/${dataset_id}/node_fills_by_block/fills_flat.ndjson
+      metadata_json: data/hyperliquid/cleaned/${dataset_id}/node_fills_by_block/metadata.json
+      parquet_dir: data/hyperliquid/cleaned/${dataset_id}/node_fills_by_block/parquet
+      fills_parquet_dir: data/hyperliquid/cleaned/${dataset_id}/node_fills_by_block/parquet/fills
+      blocks_summary_parquet_dir: data/hyperliquid/cleaned/${dataset_id}/node_fills_by_block/parquet/blocks_summary
+      adl_events_parquet_dir: data/hyperliquid/cleaned/${dataset_id}/node_fills_by_block/parquet/adl_events
+
+    misc_events:
+      dir: data/hyperliquid/cleaned/${dataset_id}/misc_events_by_block
+      blocks_summary_parquet: data/hyperliquid/cleaned/${dataset_id}/misc_events_by_block/blocks_summary.parquet
+      events_flat_parquet: data/hyperliquid/cleaned/${dataset_id}/misc_events_by_block/events_flat.parquet
+      ledger_deltas_parquet: data/hyperliquid/cleaned/${dataset_id}/misc_events_by_block/ledger_deltas.parquet
+      funding_deltas_parquet: data/hyperliquid/cleaned/${dataset_id}/misc_events_by_block/funding_deltas.parquet
+      liquidation_events_parquet: data/hyperliquid/cleaned/${dataset_id}/misc_events_by_block/liquidation_events.parquet
+      liquidation_positions_parquet: data/hyperliquid/cleaned/${dataset_id}/misc_events_by_block/liquidation_positions.parquet
+      event_type_counts_csv: data/hyperliquid/cleaned/${dataset_id}/misc_events_by_block/event_type_counts.csv
+      ledger_delta_type_counts_csv: data/hyperliquid/cleaned/${dataset_id}/misc_events_by_block/ledger_delta_type_counts.csv
+      minute_event_counts_csv: data/hyperliquid/cleaned/${dataset_id}/misc_events_by_block/minute_event_counts.csv
+      funding_coin_summary_csv: data/hyperliquid/cleaned/${dataset_id}/misc_events_by_block/funding_coin_summary.csv
+      transfer_summary_csv: data/hyperliquid/cleaned/${dataset_id}/misc_events_by_block/transfer_summary.csv
+      bridge_summary_csv: data/hyperliquid/cleaned/${dataset_id}/misc_events_by_block/bridge_summary.csv
+      staking_summary_csv: data/hyperliquid/cleaned/${dataset_id}/misc_events_by_block/staking_summary.csv
+      summary_json: data/hyperliquid/cleaned/${dataset_id}/misc_events_by_block/misc_events_summary.json
+
+    l2_book:
+      dir: data/hyperliquid/cleaned/${dataset_id}/l2_book
+      snapshots_parquet: data/hyperliquid/cleaned/${dataset_id}/l2_book/l2_book_snapshots.parquet
+      coin_summary_csv: data/hyperliquid/cleaned/${dataset_id}/l2_book/l2_coin_summary.csv
+      minute_summary_parquet: data/hyperliquid/cleaned/${dataset_id}/l2_book/l2_minute_summary.parquet
+
+    asset_ctxs:
+      dir: data/hyperliquid/cleaned/${dataset_id}/asset_ctxs
+      all_parquet: data/hyperliquid/cleaned/${dataset_id}/asset_ctxs/asset_ctxs.parquet
+      hour_csv: data/hyperliquid/cleaned/${dataset_id}/asset_ctxs/asset_ctxs_hour.csv
+
+    explorer_blocks:
+      dir: data/hyperliquid/cleaned/${dataset_id}/explorer_blocks
+      blocks_parquet_dir: data/hyperliquid/cleaned/${dataset_id}/explorer_blocks/blocks
+      txs_parquet_dir: data/hyperliquid/cleaned/${dataset_id}/explorer_blocks/txs
+      actions_parquet_dir: data/hyperliquid/cleaned/${dataset_id}/explorer_blocks/actions
+      orders_parquet_dir: data/hyperliquid/cleaned/${dataset_id}/explorer_blocks/orders
+      cancels_parquet_dir: data/hyperliquid/cleaned/${dataset_id}/explorer_blocks/cancels
+      manifest_json: data/hyperliquid/cleaned/${dataset_id}/explorer_blocks/explorer_cleaning_summary.json
+
+processing:
+  parquet_chunksize: 500000
+  explorer_chunk_size: 500000
+  compression: zstd
+
+validation:
+  expected_blocks: 42893
+  expected_node_fills_rows: 4930262
+  expected_adl_events_rows: 35022
+  expected_misc_blocks: 42893
+  field_statuses:
+    - official
+    - s3_header
+    - observed
+    - inferred
+    - derived
+  required_fills_columns:
+    - blockNumber
+    - time
+    - coin
+    - user
+    - px
+    - sz
+    - side
+    - dir
+    - notional
+    - liquidationMethod
+
+field_sources:
+  historical_data: https://hyperliquid.gitbook.io/hyperliquid-docs/historical-data
+  l1_data_schemas: https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/nodes/l1-data-schemas
+  websocket_subscriptions: https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api/websocket/subscriptions
+  info_endpoint: https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api/info-endpoint
+  asset_ids: https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api/asset-ids
+  exchange_endpoint: https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api/exchange-endpoint
+
+known_limitations:
+  - S3 wrapper fields are documented as observed transport fields unless Hyperliquid official docs define them directly.
+  - Explorer numeric asset ids can be mapped with data/hyperliquid/reference/meta/asset_id_symbol_mapping_latest.csv, but that file is the latest API snapshot rather than a 2025-10-10 21:00 UTC historical meta snapshot.
+  - Some misc_events variants are observed in this hour but not fully covered by official field-level docs.

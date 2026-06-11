@@ -1,0 +1,10 @@
+theme,main_result,evidence_level,primary_sources,limitation
+Market stress and liquidity,Top trade windows have liquidity stress ratio 1.397,Confirmed,advanced_study_01/top_notional_vs_other_stress_comparison.csv; systemic_stress_minute_table.csv,"Same-minute association, not causal market impact."
+ADL/liquidation pairing,"ADL rows=35022, exact trade-key match rate=1.000",Confirmed,q1_adl_liquidation_match_rates.csv; q1_event_inventory.csv,"Confirms cleaned fill pairing, not full protocol causality."
+ADL concentration,"ADL address top5 share=0.374, Gini=0.982",Confirmed,advanced_study_02/adl_concentration_summary.csv,One-hour sample; queue/ranking unavailable.
+ADL price/mark mechanism,ADL px vs liquidationMarkPx is measurable; bankruptcy price unavailable.,Likely/Inconclusive,q3_px_vs_liquidationMarkPx_distribution.csv; q3 evidence,No bankruptcy price or previous-block mark feed.
+Negative equity,"Negative equity events=372, user share=2.933%, ADL 60s match=3.495%",Confirmed/Inconclusive,q4_negative_equity_summary.csv; q4_negative_equity_to_adl_match_rates.csv,No final loss-bearer accounting path.
+Funding and margin flows,Funding/flow/liquidated user overlaps are measurable; funding-OI causal link remains weak.,Confirmed/Inconclusive,advanced_study_03/address_set_overlap.csv; funding_asset_spearman_corr_by_coin.csv,Flow classification is inferred; no continuous account ledger.
+Order/cancel churn,"cancel/order vs spread corr=-0.272, vs depth corr=0.404",Likely,advanced_study_04/churn_l2_correlation_summary.csv,"Latest asset mapping, not historical; no order lifecycle."
+Block/action pressure,Top10 fill/action peak overlap=20.0%,Likely,advanced_study_04/fill_action_peak_overlap.csv,Minute aggregation hides sub-minute sequencing.
+Proposer concentration,Top5 proposer block share=0.637,Confirmed,advanced_study_04/proposer_concentration_summary.csv,One-hour sample cannot infer long-run distribution.
